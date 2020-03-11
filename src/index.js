@@ -7,17 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
   let option2 = document.createElement('option');
   let option3 = document.createElement('option');
 
-  option.value = "red"
-  option.innerText = "high"
-  // option.id = "red"
-  option2.value = "yellow"
-  option2.innerText = "medium"
-  // option2.id = "yellow"
-  option3.value = "green"
-  option3.innerText = "low"
-  // option3.id = "green"
+  option.value = "red";
+  option.innerText = "high";
 
+  option2.value = "yellow";
+  option2.innerText = "medium";
 
+  option3.value = "green";
+  option3.innerText = "low";
+ 
   select.append(option);
   select.append(option2);
   select.append(option3);
@@ -28,11 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     const input = document.querySelector('#new-task-description');
     input.value
-    const priority = document.querySelector('#priority')
+    let priority = document.querySelector('#priority')
     let ul = document.querySelector('ul#tasks');
     let li = document.createElement('li');
     li.innerText = input.value;
-    // debugger
+    
     li.style.color = priority.value;
     let button = document.createElement('button');
     button.innerHTML = "delete";
@@ -40,17 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
     li.append(button);
     ul.append(li);
 
-    button.addEventListener("click", ()=> { 
-    deleteTask();
+    button.addEventListener("click", (e)=> { 
+      let id = e.target.parentNode.id; 
+      deleteTask(id);
+      debugger
+      }); 
 
   });
-
-  });
-  const deleteTask = () => {
-    const input = document.querySelector('#new-task-description');
-    const inputVal = input.value
-    let li = document.querySelector(`li#${inputVal}`);
-   
+  const deleteTask = (id) => {
+    let li = document.querySelector(`li#${id}`); 
     li.remove();
   }
 });
